@@ -1,0 +1,51 @@
+#include <AES.h>  // Library for AES encryption
+
+// Function to encrypt data using AES algorithm
+void encryptData(uint8_t* data, uint8_t* key) {
+  AES128 aes;  // Create an instance of AES128 class
+  aes.set_key(key, sizeof(key));  // Set the encryption key
+
+  // Encrypt the data in-place
+  aes.encrypt(data);
+}
+
+// Function to decrypt data using AES algorithm
+void decryptData(uint8_t* data, uint8_t* key) {
+  AES128 aes;  // Create an instance of AES128 class
+  aes.set_key(key, sizeof(key));  // Set the decryption key
+
+  // Decrypt the data in-place
+  aes.decrypt(data);
+}
+
+void setup() {
+  // Initialize the sensor and wireless module
+  // ...
+
+  // Generate or obtain the encryption key
+  uint8_t encryptionKey[] = {0x01, 0x23, 0x45, 0x67, 0x89, 0xAB, 0xCD, 0xEF,
+                             0xFE, 0xDC, 0xBA, 0x98, 0x76, 0x54, 0x32, 0x10};
+
+  // Sample data to be transmitted
+  uint8_t data[] = {0xDE, 0xAD, 0xBE, 0xEF};
+
+  // Encrypt the data
+  encryptData(data, encryptionKey);
+
+  // Transmit the encrypted data wirelessly
+  // ...
+
+  // Receive the encrypted data wirelessly
+  // ...
+
+  // Decrypt the received data
+  decryptData(data, encryptionKey);
+
+  // Process the decrypted data
+  // ...
+}
+
+void loop() {
+  // Main loop
+  // ...
+}
